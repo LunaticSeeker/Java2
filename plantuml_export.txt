@@ -1,0 +1,248 @@
+abstract class InputStream {
++available():int
++close():void
++mark(int readlimit):int
++markSupported():boolean
++abstract read():int
++read(byte[] b):int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class AudioInputStream {
+#format:AudioFormat
+#frameLength:long
+#framePos:long
+#frameSize:int
++available():int
++close():void
++getFormat():AudioFormat
++getFrameLength():long
++mark(int readlimit):void
++markSupported():boolean
++read():int
++read(byte[] b):int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class ByteArrayInputStream {
+#buf:byte[]
+#count:int
+#mark:int
+#pos:int
++available():int
++close():void
++mark(int readAheadLimit):void
++markSupported():boolean
++read():int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class FileInputStream {
++available():int
++close():void
+#finalize():void
++getFileChannel():FileChannel
++getFD():FileDescriptor
++read():int
++read(byte[] b):int
++read(byte[] b, int off, int len):int
++skip(long n):long  
+}
+
+class FilterInputStream {
+#in:InputStream
++available():int
++close():void
++mark(int readlimit):int
++markSupported():boolean
++read():int
++read(byte[] b):int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class PipedInputStream {
+#buffer:byte[]
+#in:int
+#out:int
+#PIPE_SIZE:static int
++available():int
++close():void
++connect(PipedOutputStream src):void
++read():int
++read(byte[] b, int off, int len):int
+#receive(int b):void 
+}
+
+class SequenceInputStream {
++available():int
++close():void
++read():int
++read(byte[] b, int off, int len):int
+}
+
+class StringBufferInputStream {
+#buffer:String
+#count:int
+#pos:int
++available():int
++read():int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class BufferedInputStream {
+#buf:byte[]
+#count:int
+#marklimit:int
+#markpos:int
+#pos:int
++available():int
++close():void
++mark(int readlimit):int
++markSupported():boolean
++read():int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class CheckedInputStream {
++getChecksum():CheckSum
++read():int
++read(byte[] b, int off, int len):int
++skip(long n):long
+}
+
+class CipherInputStream {
++available():int
++close():void
++markSupported():boolean
++read():int
++read(byte[] b):int
++read(byte[] b, int off, int len):int
++skip(long n):long
+}
+
+class DataInputStream {
++read(byte[] b):int
++read(byte[] b, int off, int len):int
++readBoolean():boolean
++readByte():byte
++readChar():char
++readDouble():double
++readFloat():float
++readFully(byte[] b):void
++readFully(byte[] b, int off, int len):void
++readInt():int
++readLine():String
++readLong():long
++readShort():short
++readUnsignedByte():int
++readUnsignedShort():int
++readUTF():String
++readUTF(DataInput in):static String
++skipBytes(int n):int
+}
+
+class DeflaterInputStream {
+#buf:byte[]
+#def:Deflater
++available():int
++close():void
++mark(int readlimit):int
++markSupported():boolean
++read():int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class DigestInputStream {
+#digest:MessageDigest
++getMessageDigest():MessageDigest
++on(boolean on):void
++read():int
++read(byte[] b, int off, int len):int
++setMessageDigest(MessageDigest digest):void
++toString():String
+}
+
+class InflaterInputStream {
+#buf:byte[]
+#inf:Inflater
+#len:int
++available():int
++close():void
+#fill():void
++mark(int readlimit):int
++markSupported():boolean
++read():int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class LineNumberInputStream {
++available():int
++getLineNumber():int
++mark(int readlimit):int
++read():int
++read(byte[] b, int off, int len):int
++reset():void
++setLineNumber(int lineNumber):void
++skip(long n):long
+}
+
+class ProgressMonitorInputStream {
++close():void
++getProgressMonitor():ProgressMonitor
++read():int
++read(byte[] b):int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
+}
+
+class PushbackInputStream {
+#buf:byte[]
+#pos:int
++available():int
++close():void
++mark(int readlimit):int
++markSupported():boolean
++read():int
++read(byte[] b, int off, int len):int
++reset():void
++skip(long n):long
++unread(byte[] b):void
++unread(byte[] b, int off, int len):void
++unread(int b):void
+}
+
+InputStream <|-- AudioInputStream
+InputStream <|-- ByteArrayInputStream
+InputStream <|-- FileInputStream
+InputStream <|-- FilterInputStream
+InputStream <--* FilterInputStream
+InputStream <|-- PipedInputStream
+InputStream <|-- SequenceInputStream
+InputStream <|-- StringBufferInputStream
+FilterInputStream <|-- BufferedInputStream
+FilterInputStream <|-- CheckedInputStream
+FilterInputStream <|-- CipherInputStream
+FilterInputStream <|-- DataInputStream
+FilterInputStream <|-- DeflaterInputStream
+FilterInputStream <|-- DigestInputStream
+FilterInputStream <|-- InflaterInputStream
+FilterInputStream <|-- LineNumberInputStream
+FilterInputStream <|-- ProgressMonitorInputStream
+FilterInputStream <|-- PushbackInputStream
